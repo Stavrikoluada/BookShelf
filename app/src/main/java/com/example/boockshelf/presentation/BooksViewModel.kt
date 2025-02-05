@@ -25,7 +25,7 @@ sealed interface BooksUiState {
     object Loading: BooksUiState
 }
 
-class BooksViewModel @Inject constructor(
+class BooksViewModel (
     val booksRepository: BooksRepository
 ): ViewModel() {
 

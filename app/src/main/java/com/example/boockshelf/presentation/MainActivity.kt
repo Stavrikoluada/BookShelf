@@ -11,7 +11,6 @@ import com.example.boockshelf.presentation.di.BooksApplication
 import com.example.boockshelf.ui.theme.BoockShelfTheme
 import javax.inject.Inject
 
-
 class MainActivity : ComponentActivity() {
 
     @Inject lateinit var viewModel: BooksViewModel
