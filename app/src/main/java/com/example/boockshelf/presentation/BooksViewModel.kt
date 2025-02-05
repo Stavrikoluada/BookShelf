@@ -17,6 +17,7 @@ import com.example.boockshelf.data.storage.model.Book
 import com.example.boockshelf.presentation.di.BooksApplication
 import kotlinx.coroutines.launch
 import okio.IOException
+import javax.inject.Inject
 
 sealed interface BooksUiState {
     data class Success(val bookSearch: List<Book>): BooksUiState
@@ -24,8 +25,8 @@ sealed interface BooksUiState {
     object Loading: BooksUiState
 }
 
-class BooksViewModel(
-    private val booksRepository: BooksRepository
+class BooksViewModel @Inject constructor(
+    val booksRepository: BooksRepository
 ): ViewModel() {
 
     var booksUiState: BooksUiState by mutableStateOf(BooksUiState.Loading)
@@ -61,16 +62,6 @@ class BooksViewModel(
                 BooksUiState.Error
             } catch (e: HttpException) {
                 BooksUiState.Error
-            }
-        }
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[APPLICATION_KEY] as BooksApplication)
-                val booksRepository = application.container.booksRepository
-                BooksViewModel(booksRepository = booksRepository)
             }
         }
     }

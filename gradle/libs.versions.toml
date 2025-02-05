@@ -11,6 +11,8 @@ composeBom = "2024.04.01"
 retrofit = "2.9.0"
 coil = "2.7.0"
 viewModelVer = "2.8.7"
+dagger_version = "2.55"
+javax_inject_ver = "1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,9 +33,18 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit-gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewModelVer" }
+lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-savedstate", version.ref = "viewModelVer" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "viewModelVer" }
+dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger_version" }
+dagger-android = { group = "com.google.dagger", name = "dagger-android", version.ref = "dagger_version" }
+dagger-android-support = { group = "com.google.dagger", name = "dagger-android-support", version.ref = "dagger_version" }
+dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger_version" }
+dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger_version" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax_inject_ver" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 

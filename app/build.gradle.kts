@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -41,6 +42,14 @@ android {
 
 dependencies {
 
+    implementation(libs.dagger)
+    implementation(libs.dagger.android.support)
+    implementation(libs.lifecycle.viewmodel.savedstate)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.dagger.android)
+    implementation(libs.javax.inject)
+    kapt(libs.dagger.compiler)
+    kapt(libs.dagger.android.processor)
     implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson.converter)
