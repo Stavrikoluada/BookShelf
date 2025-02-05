@@ -1,8 +1,8 @@
 package com.example.boockshelf.presentation.di
 
 import com.example.boockshelf.data.remote.network.api.BookApi
-import com.example.boockshelf.data.repository.BooksRepository
-import com.example.boockshelf.data.repository.NetworkBooksRepository
+import com.example.boockshelf.domain.repository.BooksRepository
+import com.example.boockshelf.domain.repository.NetworkBooksRepository
 import dagger.Module
 import dagger.Provides
 

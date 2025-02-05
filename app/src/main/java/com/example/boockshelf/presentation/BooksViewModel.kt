@@ -6,18 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import coil.network.HttpException
-import com.example.boockshelf.data.repository.BooksRepository
+import com.example.boockshelf.domain.repository.BooksRepository
 import com.example.boockshelf.data.storage.model.Book
-import com.example.boockshelf.presentation.di.BooksApplication
 import kotlinx.coroutines.launch
 import okio.IOException
-import javax.inject.Inject
 
 sealed interface BooksUiState {
     data class Success(val bookSearch: List<Book>): BooksUiState

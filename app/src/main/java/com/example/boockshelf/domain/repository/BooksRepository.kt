@@ -1,4 +1,4 @@
-package com.example.boockshelf.data.repository
+package com.example.boockshelf.domain.repository
 
 import com.example.boockshelf.data.remote.network.api.BookApi
 import com.example.boockshelf.data.storage.model.Book

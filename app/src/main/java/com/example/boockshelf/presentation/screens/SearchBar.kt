@@ -1,7 +1,7 @@
 package com.example.boockshelf.presentation.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.KeyboardActions
@@ -18,10 +18,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -64,6 +66,13 @@ fun ClosedAppBar(onSearchClicked: () -> Unit) {
                 text = stringResource(id = R.string.app_name)
             )
         },
+        colors = TopAppBarColors(
+            containerColor = colorResource(id = R.color.black),
+            titleContentColor = colorResource(id = R.color.white),
+            scrolledContainerColor = colorResource(id = R.color.black),
+            navigationIconContentColor = colorResource(id = R.color.white),
+            actionIconContentColor = colorResource(id = R.color.white)
+        ),
         actions = {
             IconButton(
                 onClick = { onSearchClicked() }
@@ -71,7 +80,7 @@ fun ClosedAppBar(onSearchClicked: () -> Unit) {
                 Icon(
                     imageVector = Icons.Filled.Search,
                     contentDescription = "SearchIcon",
-                    tint = Color.Black
+                    tint = Color.White
                 )
             }
         }
@@ -90,10 +99,11 @@ fun OpenedAppBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(106.dp),
+        color = colorResource(id = R.color.black)
     ) {
         Box(modifier = Modifier.fillMaxWidth().height(50.dp))
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().background(colorResource(id = R.color.black)),
             value = text,
             onValueChange = {
                 onTextChange(it)
@@ -103,7 +113,7 @@ fun OpenedAppBar(
                     modifier = Modifier
                         .alpha(0.5f),
                     text = "Search here...",
-                    color = Color.Black
+                    color = Color.White
                 )
             },
             textStyle = TextStyle(
@@ -113,18 +123,20 @@ fun OpenedAppBar(
             leadingIcon = {
                 IconButton(
                     modifier = Modifier
-                        .alpha(0.5f),
+                        .alpha(0.8f),
                     onClick = {onSearchClicked(text)}
                 ) {
                     Icon(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Search Icon",
-                        tint = Color.Black
+                        tint = Color.White
                     )
                 }
             },
             trailingIcon = {
                 IconButton(
+                    modifier = Modifier
+                        .alpha(0.8f),
                     onClick = {
                         if (text.isNotEmpty()) {
                             onTextChange("")
@@ -136,7 +148,7 @@ fun OpenedAppBar(
                     Icon(
                         imageVector = Icons.Default.Close,
                         contentDescription = "Close Icon",
-                        tint = Color.Black
+                        tint = Color.White
                     )
                 }
             },
@@ -149,8 +161,12 @@ fun OpenedAppBar(
                 }
             ),
             colors = TextFieldDefaults.textFieldColors(
-                cursorColor = Color.Black.copy(alpha = 0.5f)
+                cursorColor = Color.White.copy(alpha = 0.5f),
+                containerColor = Color.Black,
+                focusedTextColor = Color.White
             )
         )
     }
 }
+
+

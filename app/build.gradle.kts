@@ -43,6 +43,7 @@ android {
 dependencies {
 
     implementation(libs.dagger)
+    implementation(libs.lottie)
     implementation(libs.dagger.android.support)
     implementation(libs.lifecycle.viewmodel.savedstate)
     implementation(libs.lifecycle.viewmodel.ktx)

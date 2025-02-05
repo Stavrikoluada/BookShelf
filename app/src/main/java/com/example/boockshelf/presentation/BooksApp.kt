@@ -6,6 +6,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import com.example.boockshelf.R
 import com.example.boockshelf.data.storage.model.Book
 import com.example.boockshelf.presentation.screens.HomeScreen
 import com.example.boockshelf.presentation.screens.MainAppBar
@@ -44,7 +46,8 @@ fun BooksApp(
     ) {
         Surface(modifier = Modifier
             .fillMaxSize()
-            .padding(it)
+            .padding(it),
+            color = colorResource(id = R.color.grig_font)
         ) {
             HomeScreen(booksUiState = booksViewModel.booksUiState,
                 retryAction = {booksViewModel.getBooks("book")},

@@ -1,6 +1,6 @@
 package com.example.boockshelf.presentation.di
 
-import com.example.boockshelf.data.repository.BooksRepository
+import com.example.boockshelf.domain.repository.BooksRepository
 import com.example.boockshelf.presentation.BooksViewModel
 import dagger.Module
 import dagger.Provides
