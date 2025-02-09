@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.dagger.android)
     implementation(libs.javax.inject)
+    implementation(libs.androidx.runtime.livedata)
     kapt(libs.dagger.compiler)
     kapt(libs.dagger.android.processor)
     implementation(libs.lifecycle.viewmodel.compose)

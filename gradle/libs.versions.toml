@@ -14,6 +14,7 @@ viewModelVer = "2.8.7"
 dagger_version = "2.55"
 javax_inject_ver = "1"
 lottiev = "6.1.0"
+runtimeLivedata = "1.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 dagger-android-processor = { group = "com.google.dagger", name = "dagger-android-processor", version.ref = "dagger_version" }
 javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javax_inject_ver" }
 lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottiev" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,16 +1,11 @@
-package com.example.boockshelf.presentation.screens
+package com.example.boockshelf.presentation.detailscreen
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -36,49 +31,32 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.Book
+import com.example.boockshelf.data.storage.model.DetailBook
+
 
 @Composable
-fun BookGridScreen(
-    books: List<Book>,
-    modifier: Modifier,
-    onBookClicked: (Book) -> Unit
-) {
-    LazyVerticalGrid(columns = GridCells.Adaptive(150.dp),
-        contentPadding = PaddingValues(4.dp)
-    ) {
-        itemsIndexed(books) { _, book ->
-            BooksCard(book, modifier, onBookClicked)
-        }
-    }
-}
-
-@Composable
-fun BooksCard(
-    book: Book,
-    modifier: Modifier = Modifier,
-    onBookClicked: (Book) -> Unit
+fun DetailScreen(
+    detailBook: DetailBook
 ) {
     var imageLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
 
     Card(
-        modifier = modifier
+        modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth()
-            .requiredHeight(296.dp)
-            .clickable { onBookClicked(book) },
+            .requiredHeight(296.dp),
         colors = CardDefaults.cardColors(colorResource(id = R.color.card_font))
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            book.title?.let {
+            detailBook.title?.let {
                 Text(
                     text = it,
                     textAlign = TextAlign.Center,
-                    modifier = modifier
+                    modifier = Modifier
                         .padding(top = 4.dp, bottom = 8.dp),
                     color = Color.White,
                     fontSize = 14.sp
@@ -94,9 +72,9 @@ fun BooksCard(
             }
 
             AsyncImage(
-                modifier = modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data(book.imageLink?.replace("http", "https"))
+                    .data(detailBook.imageLink?.replace("http", "https"))
                     .crossfade(true)
                     .build(),
                 error = painterResource(id = R.drawable.ic_book_96),
@@ -108,4 +86,3 @@ fun BooksCard(
         }
     }
 }
-

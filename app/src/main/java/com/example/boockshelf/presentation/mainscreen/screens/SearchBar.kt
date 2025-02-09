@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.screens
+package com.example.boockshelf.presentation.mainscreen.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
