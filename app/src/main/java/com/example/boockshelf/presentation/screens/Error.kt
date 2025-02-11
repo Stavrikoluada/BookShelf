@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.mainscreen.screens
+package com.example.boockshelf.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import com.example.boockshelf.R
 
 @Composable
-fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
+fun Error(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally

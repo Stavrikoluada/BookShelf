@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.mainscreen.screens
+package com.example.boockshelf.presentation.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +14,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier) {
+fun Loading(modifier: Modifier = Modifier) {
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
 

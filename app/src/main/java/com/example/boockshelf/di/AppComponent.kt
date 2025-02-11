@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.di
+package com.example.boockshelf.di
 
 import com.example.boockshelf.presentation.MainActivity
 import com.example.boockshelf.presentation.DetailActivity

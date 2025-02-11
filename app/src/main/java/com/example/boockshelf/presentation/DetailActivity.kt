@@ -1,33 +1,23 @@
 package com.example.boockshelf.presentation
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.boockshelf.data.storage.model.DetailBook
-import com.example.boockshelf.domain.repository.BooksRepository
-import com.example.boockshelf.domain.repository.NetworkBooksRepository
-import com.example.boockshelf.presentation.detailscreen.DetailScreen
-import com.example.boockshelf.presentation.di.BooksApplication
-import com.example.boockshelf.presentation.mainscreen.screens.BooksApp
-import com.example.boockshelf.presentation.mainscreen.screens.LoadingScreen
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.example.boockshelf.presentation.screens.detail_screen.DetailScreen
+import com.example.boockshelf.di.BooksApplication
+import com.example.boockshelf.presentation.screens.Loading
+import com.example.boockshelf.presentation.state.BooksUiStateDetail
 import com.example.boockshelf.ui.theme.BoockShelfTheme
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 class DetailActivity: ComponentActivity() {
 
     @Inject
-    lateinit var viewModel: BooksViewModel
+    lateinit var viewModel: DetailViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,28 +25,29 @@ class DetailActivity: ComponentActivity() {
 
         (application as BooksApplication).appComponent.inject(this)
 
-        val bookTitle = intent.getStringExtra("BOOK_TITLE") ?: ""
+        val bookTitle = intent.getStringExtra(MainActivity.BOOK_TITLE_KEY) ?: ""
 
         viewModel.getBookDetails(bookTitle)
 
         enableEdgeToEdge()
         setContent {
             BoockShelfTheme {
-                val state = viewModel.booksUiStateDetail
+                val state by viewModel.booksUiStateDetail.collectAsState()
                 when (state) {
                     is BooksUiStateDetail.Loading -> {
-                        LoadingScreen()
+                        Loading()
                     }
-                    is BooksUiStateDetail.SuccessDetail -> {
-                        val bookDetail = state.bookSearchDetail.firstOrNull()
+                    is BooksUiStateDetail.Success -> {
+                        val bookDetail = (state as BooksUiStateDetail.Success)
+                            .bookSearchDetail.firstOrNull()
                         if (bookDetail != null) {
                             DetailScreen(
-                                detailBook = bookDetail
+                                book = bookDetail
                             )
                         }
                     }
                     is BooksUiStateDetail.Error -> {
-                        LoadingScreen()
+                        Loading()
                     }
                 }
             }

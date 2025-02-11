@@ -42,6 +42,9 @@ android {
 
 dependencies {
 
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
     implementation(libs.dagger)
     implementation(libs.lottie)
     implementation(libs.dagger.android.support)

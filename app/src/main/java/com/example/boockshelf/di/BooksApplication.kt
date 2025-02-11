@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.di
+package com.example.boockshelf.di
 
 import android.app.Application
 

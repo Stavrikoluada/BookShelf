@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.mainscreen.screens
+package com.example.boockshelf.presentation.screens.main_screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -36,13 +36,13 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.Book
+import com.example.boockshelf.data.storage.model.BookModel
 
 @Composable
 fun BookGridScreen(
-    books: List<Book>,
+    books: List<BookModel>,
     modifier: Modifier,
-    onBookClicked: (Book) -> Unit
+    onBookClicked: (BookModel) -> Unit
 ) {
     LazyVerticalGrid(columns = GridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(4.dp)
@@ -55,11 +55,16 @@ fun BookGridScreen(
 
 @Composable
 fun BooksCard(
-    book: Book,
+    book: BookModel,
     modifier: Modifier = Modifier,
-    onBookClicked: (Book) -> Unit
+    onBookClicked: (BookModel) -> Unit
 ) {
-    var imageLoaded by remember { mutableStateOf(true) }
+    val imageLoaded = ImageRequest.Builder(context = LocalContext.current)
+        .data(book.imageLink?.replace("http", "https"))
+        .crossfade(true)
+        .build()
+    //ИСПРАВИТЬ НА Flow
+    var isLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
 
@@ -85,7 +90,7 @@ fun BooksCard(
                 )
             }
 
-            if (imageLoaded) {
+            if (isLoaded) {
                 LottieAnimation(
                     modifier = Modifier.height(100.dp).width(100.dp),
                     composition = composition,
@@ -95,13 +100,10 @@ fun BooksCard(
 
             AsyncImage(
                 modifier = modifier.fillMaxWidth(),
-                model = ImageRequest.Builder(context = LocalContext.current)
-                    .data(book.imageLink?.replace("http", "https"))
-                    .crossfade(true)
-                    .build(),
+                model = imageLoaded,
                 error = painterResource(id = R.drawable.ic_book_96),
-                onSuccess = { imageLoaded = false },
-                onError = { imageLoaded = false } ,
+                onSuccess = { isLoaded = false },
+                onError = { isLoaded = false } ,
                 contentDescription = stringResource(id = R.string.content_description),
                 contentScale = ContentScale.Crop
             )

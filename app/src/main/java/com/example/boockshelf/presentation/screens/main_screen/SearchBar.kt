@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.mainscreen.screens
+package com.example.boockshelf.presentation.screens.main_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.boockshelf.R
-import com.example.boockshelf.presentation.SearchWidgetState
+import com.example.boockshelf.presentation.state.SearchWidgetState
 
 @Composable
 fun MainAppBar(

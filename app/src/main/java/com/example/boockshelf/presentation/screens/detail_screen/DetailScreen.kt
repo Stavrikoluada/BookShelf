@@ -1,10 +1,10 @@
-package com.example.boockshelf.presentation.detailscreen
+package com.example.boockshelf.presentation.screens.detail_screen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -31,37 +31,29 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.DetailBook
+import com.example.boockshelf.data.storage.model.BookModel
 
 
 @Composable
 fun DetailScreen(
-    detailBook: DetailBook
+    book: BookModel
 ) {
-    var imageLoaded by remember { mutableStateOf(true) }
+    var imageLoaded by remember { mutableStateOf(false) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
 
     Card(
         modifier = Modifier
-            .padding(4.dp)
-            .fillMaxWidth()
-            .requiredHeight(296.dp),
+            .fillMaxSize(),
+            //.clickable { onBookClicked(book) },
         colors = CardDefaults.cardColors(colorResource(id = R.color.card_font))
     ) {
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            detailBook.title?.let {
-                Text(
-                    text = it,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(top = 4.dp, bottom = 8.dp),
-                    color = Color.White,
-                    fontSize = 14.sp
-                )
-            }
+
+            Spacer(modifier = Modifier.height(32.dp))
 
             if (imageLoaded) {
                 LottieAnimation(
@@ -72,17 +64,28 @@ fun DetailScreen(
             }
 
             AsyncImage(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.height(200.dp),
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data(detailBook.imageLink?.replace("http", "https"))
+                    .data(book.imageLink?.replace("http", "https"))
                     .crossfade(true)
                     .build(),
                 error = painterResource(id = R.drawable.ic_book_96),
-                onSuccess = { imageLoaded = false },
-                onError = { imageLoaded = false } ,
+                onSuccess = { imageLoaded = true },
+                onError = { imageLoaded = true } ,
                 contentDescription = stringResource(id = R.string.content_description),
                 contentScale = ContentScale.Crop
             )
+
+            book.title?.let {
+                Text(
+                    text = it,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .padding(top = 4.dp, bottom = 8.dp),
+                    color = Color.White,
+                    fontSize = 14.sp
+                )
+            }
         }
     }
 }

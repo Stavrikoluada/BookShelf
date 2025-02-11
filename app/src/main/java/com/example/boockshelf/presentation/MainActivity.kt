@@ -1,20 +1,18 @@
 package com.example.boockshelf.presentation
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.core.content.ContextCompat
-import com.example.boockshelf.presentation.di.BooksApplication
-import com.example.boockshelf.presentation.mainscreen.screens.BooksApp
+import com.example.boockshelf.di.BooksApplication
+import com.example.boockshelf.presentation.screens.main_screen.BooksApp
 import com.example.boockshelf.ui.theme.BoockShelfTheme
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
-    @Inject lateinit var viewModel: BooksViewModel
+    @Inject lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +25,15 @@ class MainActivity : ComponentActivity() {
                 BooksApp(
                     onBookClicked = { book ->
                         val intent = Intent(this, DetailActivity::class.java)
-                        intent.putExtra("BOOK_TITLE", book.title)
+                        intent.putExtra(BOOK_TITLE_KEY, book.title)
                         startActivity(intent)
                     },
                     booksViewModel = viewModel
                 )
             }
         }
+    }
+    companion object {
+        const val BOOK_TITLE_KEY = "BOOK_TITLE"
     }
 }
