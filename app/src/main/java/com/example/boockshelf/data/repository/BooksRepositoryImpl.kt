@@ -1,7 +1,7 @@
 package com.example.boockshelf.data.repository
 
 import com.example.boockshelf.data.remote.network.api.BookApi
-import com.example.boockshelf.data.storage.model.BookModel
+import com.example.boockshelf.domain.model.BookModel
 import com.example.boockshelf.domain.repository.BooksRepository
 
 

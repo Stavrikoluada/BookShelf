@@ -12,7 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.BookModel
+import com.example.boockshelf.domain.model.BookModel
 import com.example.boockshelf.presentation.MainViewModel
 import com.example.boockshelf.presentation.screens.Error
 import com.example.boockshelf.presentation.screens.Loading
@@ -66,7 +66,7 @@ fun BooksApp(
             is BooksUiState.Success -> BookGridScreen(
                 books = (booksUiState as BooksUiState.Success).bookSearch,
                 modifier = modifier,
-                onBookClicked
+                onBookClicked,
             )
             is BooksUiState.Error -> Error(retryAction = {booksViewModel.getBooks("book")})
         }

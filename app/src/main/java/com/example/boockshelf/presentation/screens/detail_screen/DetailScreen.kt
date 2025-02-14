@@ -31,14 +31,14 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.BookModel
+import com.example.boockshelf.domain.model.BookModel
 
 
 @Composable
 fun DetailScreen(
-    book: BookModel
+    book: BookModel?
 ) {
-    var imageLoaded by remember { mutableStateOf(false) }
+    var imageLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
 
@@ -66,17 +66,17 @@ fun DetailScreen(
             AsyncImage(
                 modifier = Modifier.height(200.dp),
                 model = ImageRequest.Builder(context = LocalContext.current)
-                    .data(book.imageLink?.replace("http", "https"))
+                    .data(book?.imageLink?.replace("http", "https"))
                     .crossfade(true)
                     .build(),
                 error = painterResource(id = R.drawable.ic_book_96),
-                onSuccess = { imageLoaded = true },
-                onError = { imageLoaded = true } ,
+                onSuccess = { imageLoaded = false },
+                onError = { imageLoaded = false } ,
                 contentDescription = stringResource(id = R.string.content_description),
                 contentScale = ContentScale.Crop
             )
 
-            book.title?.let {
+            book?.title?.let {
                 Text(
                     text = it,
                     textAlign = TextAlign.Center,

@@ -1,6 +1,6 @@
 package com.example.boockshelf.presentation.state
 
-import com.example.boockshelf.data.storage.model.BookModel
+import com.example.boockshelf.domain.model.BookModel
 
 sealed class BooksUiStateDetail {
     data class Success(val bookSearchDetail: List<BookModel>) : BooksUiStateDetail()

@@ -36,13 +36,13 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.data.storage.model.BookModel
+import com.example.boockshelf.domain.model.BookModel
 
 @Composable
 fun BookGridScreen(
     books: List<BookModel>,
     modifier: Modifier,
-    onBookClicked: (BookModel) -> Unit
+    onBookClicked: (BookModel) -> Unit,
 ) {
     LazyVerticalGrid(columns = GridCells.Adaptive(150.dp),
         contentPadding = PaddingValues(4.dp)
@@ -64,6 +64,7 @@ fun BooksCard(
         .crossfade(true)
         .build()
     //ИСПРАВИТЬ НА Flow
+
     var isLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))

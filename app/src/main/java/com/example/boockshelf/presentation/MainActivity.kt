@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                 BooksApp(
                     onBookClicked = { book ->
                         val intent = Intent(this, DetailActivity::class.java)
-                        intent.putExtra(BOOK_TITLE_KEY, book.title)
+                        intent.putExtra(BOOK_TITLE_KEY, book)
                         startActivity(intent)
                     },
                     booksViewModel = viewModel
@@ -37,3 +37,8 @@ class MainActivity : ComponentActivity() {
         const val BOOK_TITLE_KEY = "BOOK_TITLE"
     }
 }
+
+
+//С помощью room сделать возможным сохранение избранных книг
+//Сделать навигацию с синглактивити и шторкой слева
+//Поправить экраны

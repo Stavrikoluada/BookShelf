@@ -42,8 +42,10 @@ android {
 
 dependencies {
 
+    implementation(libs.kotlin.parcelize.runtime)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.navigation.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.dagger)
     implementation(libs.lottie)
