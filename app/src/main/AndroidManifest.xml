@@ -16,11 +16,6 @@
         android:theme="@style/Theme.BoockShelf"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.DetailActivity"
-            android:exported="false"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.BoockShelf"/>
-        <activity
             android:name=".presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"

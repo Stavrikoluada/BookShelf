@@ -1,7 +1,6 @@
 package com.example.boockshelf.di
 
 import com.example.boockshelf.presentation.MainActivity
-import com.example.boockshelf.presentation.DetailActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,7 +9,6 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(mainActivity: MainActivity)
-    fun inject(detailActivity: DetailActivity)
 }
 
 

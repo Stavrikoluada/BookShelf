@@ -21,8 +21,7 @@ import com.example.boockshelf.presentation.state.SearchWidgetState
 
 
 @Composable
-fun BooksApp(
-    modifier: Modifier = Modifier,
+fun BooksMainScreen(
     onBookClicked: (BookModel) -> Unit,
     booksViewModel: MainViewModel
 ) {
@@ -34,7 +33,7 @@ fun BooksApp(
     val searchTextState = booksViewModel.searchTextState
 
     Scaffold(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         topBar = {
             MainAppBar(
                 searchWidgetState = searchWidgetState.value,
@@ -62,10 +61,10 @@ fun BooksApp(
 
             val booksUiState by booksViewModel.booksUiState.collectAsStateWithLifecycle()
             when(booksUiState) {
-            is BooksUiState.Loading -> Loading(modifier)
+            is BooksUiState.Loading -> Loading(Modifier)
             is BooksUiState.Success -> BookGridScreen(
                 books = (booksUiState as BooksUiState.Success).bookSearch,
-                modifier = modifier,
+                modifier = Modifier,
                 onBookClicked,
             )
             is BooksUiState.Error -> Error(retryAction = {booksViewModel.getBooks("book")})

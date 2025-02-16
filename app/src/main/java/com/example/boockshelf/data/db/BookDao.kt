@@ -9,12 +9,12 @@ import com.example.boockshelf.domain.model.BookModel
 @Dao
 interface BookDao {
 
-    @Query("SELECT * FROM book")
-    suspend fun getAllBooks(): List<BookModel>
+    @Query("SELECT * FROM favorites_book")
+    suspend fun getFavoritesBooks(): List<BookEntity>
 
-    @Query("SELECT * FROM book WHERE id = :id")
+    @Query("SELECT * FROM favorites_book WHERE id = :id")
     suspend fun getBooksForId(id: String): BookModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertBooks(movies: List<BookEntity>)
+    suspend fun insertToFavoritesBooks(movies: BookEntity)
 }

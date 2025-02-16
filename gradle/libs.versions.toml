@@ -14,11 +14,12 @@ viewModelVer = "2.8.7"
 dagger_version = "2.55"
 javax_inject_ver = "1"
 lottiev = "6.1.0"
-runtimeLivedata = "1.7.7"
+runtimeLivedata = "1.7.8"
 room = "2.6.1"
 serializationJson = "1.6.3"
 parcelizeVer = "1.6.10"
 navVersion = "2.8.7"
+coreKtxVersion = "1.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,9 +52,11 @@ lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottiev"
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx_room_runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx_room_compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serializationJson" }
 kotlin-parcelize-runtime = { group = "org.jetbrains.kotlin", name = "kotlin-parcelize-runtime", version.ref = "parcelizeVer" }
 navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navVersion" }
+core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

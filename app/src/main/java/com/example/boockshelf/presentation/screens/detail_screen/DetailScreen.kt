@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -32,11 +33,14 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
 import com.example.boockshelf.domain.model.BookModel
+import com.google.gson.annotations.Until
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun DetailScreen(
-    book: BookModel?
+    book: BookModel?,
+    saveToFavorites: (BookModel?) -> Unit
 ) {
     var imageLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
@@ -45,8 +49,8 @@ fun DetailScreen(
     Card(
         modifier = Modifier
             .fillMaxSize(),
-            //.clickable { onBookClicked(book) },
-        colors = CardDefaults.cardColors(colorResource(id = R.color.card_font))
+        colors = CardDefaults.cardColors(colorResource(id = R.color.card_font)),
+
     ) {
 
         Column(
@@ -85,6 +89,13 @@ fun DetailScreen(
                     color = Color.White,
                     fontSize = 14.sp
                 )
+            }
+
+            Button(
+                onClick = {
+                    saveToFavorites(book)
+            }) {
+                Text(text = stringResource(id = R.string.save_to_favorites))
             }
         }
     }

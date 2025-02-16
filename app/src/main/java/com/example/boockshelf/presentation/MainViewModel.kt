@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.boockshelf.domain.model.BookModel
 import com.example.boockshelf.domain.repository.BooksRepository
 import com.example.boockshelf.presentation.state.BooksUiState
 import com.example.boockshelf.presentation.state.SearchWidgetState
@@ -51,6 +52,12 @@ class MainViewModel(
                 _booksUiState.value = BooksUiState.Success(books)
             }
                 .onFailure { _booksUiState.value = BooksUiState.Error }
+        }
+    }
+
+    fun saveToFavorites(book: BookModel) {
+        viewModelScope.launch {
+            booksRepository.saveFavoritesBookToDatabase(book)
         }
     }
 
