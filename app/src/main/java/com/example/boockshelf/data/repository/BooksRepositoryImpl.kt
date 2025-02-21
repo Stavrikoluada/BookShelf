@@ -1,11 +1,10 @@
 package com.example.boockshelf.data.repository
 
-import androidx.room.ColumnInfo
 import com.example.boockshelf.data.db.AppDatabase
-import com.example.boockshelf.data.db.BookDao
 import com.example.boockshelf.data.db.BookEntity
 import com.example.boockshelf.data.remote.network.api.BookApi
-import com.example.boockshelf.domain.model.BookModel
+import com.example.boockshelf.data.storage.GenresList
+import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.domain.repository.BooksRepository
 
 
@@ -53,5 +52,15 @@ class BooksRepositoryImpl(
                 id = items.id
             )
         }
+    }
+
+    override suspend fun deleteBookById(id: String?) {
+        if (id != null) {
+            db.bookDao().deleteBookById(id)
+        }
+    }
+
+    override fun getGenresBook(): List<String> {
+        return GenresList.genresList
     }
 }

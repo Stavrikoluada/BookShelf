@@ -1,13 +1,12 @@
 package com.example.boockshelf.presentation
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.rememberNavController
 import com.example.boockshelf.di.BooksApplication
-import com.example.boockshelf.presentation.navigation.NavGraph
+import com.example.boockshelf.presentation.navigation.DrawerNavigation
 import com.example.boockshelf.ui.theme.BoockShelfTheme
 import javax.inject.Inject
 
@@ -25,9 +24,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             BoockShelfTheme {
                 val navController = rememberNavController()
-                NavGraph(
+                DrawerNavigation(
                     navController = navController,
-                    booksViewModel = viewModel
+                    viewModel = viewModel
                 )
             }
         }
@@ -36,7 +35,6 @@ class MainActivity : ComponentActivity() {
 
 
 
-//
 //С помощью room сделать возможным сохранение избранных книг
 //Сделать навигацию с синглактивити и шторкой слева
 //Поправить экраны

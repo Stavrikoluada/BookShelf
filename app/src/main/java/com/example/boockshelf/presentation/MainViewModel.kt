@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boockshelf.domain.model.BookModel
+import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.domain.repository.BooksRepository
 import com.example.boockshelf.presentation.state.BooksUiState
 import com.example.boockshelf.presentation.state.SearchWidgetState
@@ -59,6 +59,28 @@ class MainViewModel(
         viewModelScope.launch {
             booksRepository.saveFavoritesBookToDatabase(book)
         }
+    }
+
+    fun getFavoritesBooks() {
+        viewModelScope.launch {
+            _booksUiState.value = BooksUiState.Loading
+            runCatching {
+                booksRepository.getFavoritesBookFromDatabase()
+            }.onSuccess { books ->
+                _booksUiState.value = BooksUiState.Success(books)
+            }
+                .onFailure { _booksUiState.value = BooksUiState.Error }
+        }
+    }
+
+    fun deleteBookForId(book: BookModel) {
+        viewModelScope.launch {
+            booksRepository.deleteBookById(book.id)
+        }
+    }
+
+    fun getGenresBook(): List<String> {
+        return booksRepository.getGenresBook()
     }
 
     private val DEFAULT_BOOK = "book"

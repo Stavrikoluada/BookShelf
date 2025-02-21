@@ -5,4 +5,6 @@
     <string name="loading">Loading</string>
     <string name="content_description">Book</string>
     <string name="save_to_favorites">Save to favorites</string>
+    <string name="delete_from_favorites">Delete from favorites</string>
+    <string name="read_online">Read Online</string>
 </resources>

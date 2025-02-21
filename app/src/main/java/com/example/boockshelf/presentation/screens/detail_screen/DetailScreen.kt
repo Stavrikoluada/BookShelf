@@ -1,5 +1,7 @@
 package com.example.boockshelf.presentation.screens.detail_screen
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,25 +28,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.domain.model.BookModel
-import com.google.gson.annotations.Until
-import kotlinx.coroutines.launch
+import com.example.boockshelf.domain.entity.BookModel
 
 
 @Composable
 fun DetailScreen(
     book: BookModel?,
-    saveToFavorites: (BookModel?) -> Unit
+    saveToFavorites: (BookModel?) -> Unit,
+    deleteFromFavorites: (BookModel?) -> Unit
 ) {
     var imageLoaded by remember { mutableStateOf(true) }
     val composition by rememberLottieComposition(
         spec = LottieCompositionSpec.Asset("download_anim.json"))
+    val context = LocalContext.current
 
     Card(
         modifier = Modifier
@@ -96,6 +99,24 @@ fun DetailScreen(
                     saveToFavorites(book)
             }) {
                 Text(text = stringResource(id = R.string.save_to_favorites))
+            }
+
+            Button(
+                onClick = {
+                    deleteFromFavorites(book)
+                }) {
+                Text(text = stringResource(id = R.string.delete_from_favorites))
+            }
+
+            Button(
+                onClick = {
+                    ContextCompat.startActivity(
+                        context,
+                        Intent(Intent.ACTION_VIEW, Uri.parse(book?.previewLink)),
+                        null
+                    )
+                }) {
+                Text(text = stringResource(id = R.string.read_online))
             }
         }
     }

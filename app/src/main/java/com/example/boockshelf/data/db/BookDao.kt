@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.boockshelf.domain.model.BookModel
 
 @Dao
 interface BookDao {
@@ -13,8 +12,11 @@ interface BookDao {
     suspend fun getFavoritesBooks(): List<BookEntity>
 
     @Query("SELECT * FROM favorites_book WHERE id = :id")
-    suspend fun getBooksForId(id: String): BookModel
+    suspend fun getBookForId(id: String): BookEntity
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertToFavoritesBooks(movies: BookEntity)
+
+    @Query("DELETE FROM favorites_book WHERE id = :id")
+    suspend fun deleteBookById(id: String)
 }

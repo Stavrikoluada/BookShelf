@@ -36,7 +36,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.boockshelf.R
-import com.example.boockshelf.domain.model.BookModel
+import com.example.boockshelf.domain.entity.BookModel
 
 @Composable
 fun BookGridScreen(

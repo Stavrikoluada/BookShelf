@@ -6,16 +6,16 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.boockshelf.domain.model.BookModel
+import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.presentation.screens.detail_screen.DetailScreen
 import com.google.gson.Gson
-import com.google.gson.annotations.Until
 
 private const val BASE_ROUTE = "details"
 private const val BOOK_KEY = "book"
 
 fun NavGraphBuilder.details(
-    saveToFavorites: (BookModel?) -> Unit
+    saveToFavorites: (BookModel?) -> Unit,
+    deleteFromFavorites: (BookModel?) -> Unit
 ) {
     composable(
         route = "$BASE_ROUTE/{$BOOK_KEY}",
@@ -29,7 +29,8 @@ fun NavGraphBuilder.details(
         val book = Gson().fromJson(bookJson, BookModel::class.java)
         DetailScreen(
             book = book,
-            saveToFavorites = saveToFavorites
+            saveToFavorites = saveToFavorites,
+            deleteFromFavorites = deleteFromFavorites
         )
     }
 }

@@ -1,6 +1,5 @@
 package com.example.boockshelf.di
 
-import com.example.boockshelf.data.db.BookDao
 import com.example.boockshelf.data.remote.network.api.BookApi
 import com.example.boockshelf.data.repository.BooksRepositoryImpl
 import com.example.boockshelf.domain.repository.BooksRepository

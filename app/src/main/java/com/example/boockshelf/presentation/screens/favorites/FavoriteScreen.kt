@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.screens.main_screen
+package com.example.boockshelf.presentation.screens.favorites
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,18 +16,18 @@ import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.presentation.MainViewModel
 import com.example.boockshelf.presentation.screens.Error
 import com.example.boockshelf.presentation.screens.Loading
+import com.example.boockshelf.presentation.screens.main_screen.BookGridScreen
+import com.example.boockshelf.presentation.screens.main_screen.MainAppBar
 import com.example.boockshelf.presentation.state.BooksUiState
 import com.example.boockshelf.presentation.state.SearchWidgetState
 
-
 @Composable
-fun BooksMainScreen(
+fun FavoriteScreen(
     onBookClicked: (BookModel) -> Unit,
     booksViewModel: MainViewModel
 ) {
-
     LifecycleEventEffect(Lifecycle.Event.ON_START) {
-        booksViewModel.initVm()
+        booksViewModel.getFavoritesBooks()
     }
     val searchWidgetState = booksViewModel.searchWidgetState
     val searchTextState = booksViewModel.searchTextState
@@ -53,22 +53,24 @@ fun BooksMainScreen(
             )
         }
     ) {
-        Surface(modifier = Modifier
-            .fillMaxSize()
-            .padding(it),
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
             color = colorResource(id = R.color.grig_font)
         ) {
 
             val booksUiState by booksViewModel.booksUiState.collectAsStateWithLifecycle()
-            when(booksUiState) {
-            is BooksUiState.Loading -> Loading(Modifier)
-            is BooksUiState.Success -> BookGridScreen(
-                books = (booksUiState as BooksUiState.Success).bookSearch,
-                modifier = Modifier,
-                onBookClicked,
-            )
-            is BooksUiState.Error -> Error(retryAction = {booksViewModel.getBooks("book")})
-        }
+            when (booksUiState) {
+                is BooksUiState.Loading -> Loading(Modifier)
+                is BooksUiState.Success -> BookGridScreen(
+                    books = (booksUiState as BooksUiState.Success).bookSearch,
+                    modifier = Modifier,
+                    onBookClicked,
+                )
+
+                is BooksUiState.Error -> Error(retryAction = { booksViewModel.getFavoritesBooks() })
+            }
         }
     }
 }

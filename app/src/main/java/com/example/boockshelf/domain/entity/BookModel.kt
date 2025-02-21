@@ -1,4 +1,4 @@
-package com.example.boockshelf.domain.model
+package com.example.boockshelf.domain.entity
 
 import android.os.Parcel
 import android.os.Parcelable
