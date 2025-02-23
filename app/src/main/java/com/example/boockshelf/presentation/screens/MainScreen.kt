@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.screens.main_screen
+package com.example.boockshelf.presentation.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -8,20 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.boockshelf.R
 import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.presentation.MainViewModel
-import com.example.boockshelf.presentation.screens.Error
-import com.example.boockshelf.presentation.screens.Loading
 import com.example.boockshelf.presentation.state.BooksUiState
-import com.example.boockshelf.presentation.state.SearchWidgetState
 
 
 @Composable
-fun BooksMainScreen(
+fun MainScreen(
     onBookClicked: (BookModel) -> Unit,
     booksViewModel: MainViewModel
 ) {
@@ -29,29 +27,10 @@ fun BooksMainScreen(
     LifecycleEventEffect(Lifecycle.Event.ON_START) {
         booksViewModel.initVm()
     }
-    val searchWidgetState = booksViewModel.searchWidgetState
-    val searchTextState = booksViewModel.searchTextState
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            MainAppBar(
-                searchWidgetState = searchWidgetState.value,
-                searchTextState = searchTextState.value,
-                onTextChange = {
-                    booksViewModel.updateSearchTextState(newValue = it)
-                },
-                onCloseClicked = {
-                    booksViewModel.updateSearchWidgetState(newValue = SearchWidgetState.CLOSED)
-                },
-                onSearchClicked = {
-                    booksViewModel.getBooks(it)
-                },
-                onSearchTriggered = {
-                    booksViewModel.updateSearchWidgetState(newValue = SearchWidgetState.OPENED)
-                }
-            )
-        }
+        modifier = Modifier.fillMaxSize()
+            .padding(top = 64.dp),
     ) {
         Surface(modifier = Modifier
             .fillMaxSize()
@@ -62,9 +41,8 @@ fun BooksMainScreen(
             val booksUiState by booksViewModel.booksUiState.collectAsStateWithLifecycle()
             when(booksUiState) {
             is BooksUiState.Loading -> Loading(Modifier)
-            is BooksUiState.Success -> BookGridScreen(
+            is BooksUiState.Success -> GridScreen(
                 books = (booksUiState as BooksUiState.Success).bookSearch,
-                modifier = Modifier,
                 onBookClicked,
             )
             is BooksUiState.Error -> Error(retryAction = {booksViewModel.getBooks("book")})

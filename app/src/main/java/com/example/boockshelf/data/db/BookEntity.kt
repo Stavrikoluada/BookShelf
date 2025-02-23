@@ -16,6 +16,9 @@ data class BookEntity (
     @ColumnInfo(name = "previewLink")
     val previewLink: String?,
 
+    @ColumnInfo(name = "authors")
+    val authors: String?,
+
     @ColumnInfo(name = "imageLink")
     val imageLink: String?,
 
@@ -26,6 +29,7 @@ data class BookEntity (
     val description: String?,
 
     @ColumnInfo(name = "id")
-    val id: String?
+    val id: String?,
+
 )
 

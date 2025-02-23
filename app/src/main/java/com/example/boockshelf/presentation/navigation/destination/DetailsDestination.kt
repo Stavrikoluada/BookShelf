@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.boockshelf.domain.entity.BookModel
-import com.example.boockshelf.presentation.screens.detail_screen.DetailScreen
+import com.example.boockshelf.presentation.screens.DetailScreen
 import com.google.gson.Gson
 
 private const val BASE_ROUTE = "details"

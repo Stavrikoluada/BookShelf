@@ -1,4 +1,4 @@
-package com.example.boockshelf.presentation.screens.detail_screen
+package com.example.boockshelf.presentation.screens
 
 import android.content.Intent
 import android.net.Uri
@@ -51,7 +51,8 @@ fun DetailScreen(
 
     Card(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(top = 64.dp),
         colors = CardDefaults.cardColors(colorResource(id = R.color.card_font)),
 
     ) {

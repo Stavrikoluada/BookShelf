@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.presentation.MainViewModel
-import com.example.boockshelf.presentation.screens.main_screen.BooksMainScreen
+import com.example.boockshelf.presentation.screens.MainScreen
 
 const val BASE_ROUTE_MAIN = "main"
 
@@ -13,7 +13,7 @@ fun NavGraphBuilder.main(
     booksViewModel: MainViewModel
 ) {
     composable(BASE_ROUTE_MAIN) {
-        BooksMainScreen(
+        MainScreen(
             onBookClicked = onBookClicked,
             booksViewModel = booksViewModel
         )

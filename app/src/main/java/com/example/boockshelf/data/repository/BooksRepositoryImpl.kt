@@ -20,7 +20,7 @@ class BooksRepositoryImpl(
                 title = items.volumeInfo?.title,
                 previewLink = items.volumeInfo?.previewLink,
                 imageLink = items.volumeInfo?.imageLinks?.thumbnail,
-                //authors = ArrayList<String>(bookDetailVolumeInfo.authors),
+                authors = items.volumeInfo?.authors,
                 pageCount = items.volumeInfo?.pageCount,
                 description = items.volumeInfo?.description,
                 id = items.id
@@ -34,6 +34,7 @@ class BooksRepositoryImpl(
                 title = book.title,
                 previewLink = book.previewLink,
                 imageLink = book.imageLink,
+                authors = book.authors?.joinToString(separator = ","),
                 pageCount = book.pageCount,
                 description = book.description,
                 id = book.id
@@ -47,6 +48,7 @@ class BooksRepositoryImpl(
                 title = items.title,
                 previewLink = items.previewLink,
                 imageLink = items.imageLink,
+                authors = items.authors?.split(",")?.let { ArrayList(it)},
                 pageCount = items.pageCount,
                 description = items.description,
                 id = items.id

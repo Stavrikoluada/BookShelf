@@ -1,17 +1,14 @@
-package com.example.boockshelf.presentation.screens.genres
+package com.example.boockshelf.presentation.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,7 +30,8 @@ fun GenresScreen(
     onGenreClicked: (String) -> Unit
 ) {
     Surface(modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxSize()
+        .padding(top = 56.dp),
         color = colorResource(id = R.color.grig_font)
     ) {
         LazyColumn(
@@ -58,7 +56,7 @@ fun GenresCard(
             .fillMaxWidth()
             .requiredHeight(50.dp)
             .clickable { onGenreClicked(genre) },
-        colors = CardDefaults.cardColors(colorResource(id = R.color.card_font))
+        colors = CardDefaults.cardColors(colorResource(id = R.color.white))
     ) {
         Column(
             verticalArrangement = Arrangement.Center,
@@ -69,7 +67,6 @@ fun GenresCard(
                 modifier = Modifier
                     .padding(start = 16.dp, top = 12.dp),
                 textAlign = TextAlign.Start,
-                color = Color.Black,
                 fontSize = 18.sp
             )
         }
