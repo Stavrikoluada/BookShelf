@@ -8,4 +8,5 @@ data class BookModel(
     val pageCount: Int?,
     val description: String?,
     val id: String?,
+    val isSavedInDatabase: Boolean,
 )

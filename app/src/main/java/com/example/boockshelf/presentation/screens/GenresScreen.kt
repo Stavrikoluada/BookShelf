@@ -31,7 +31,7 @@ fun GenresScreen(
 ) {
     Surface(modifier = Modifier
         .fillMaxSize()
-        .padding(top = 56.dp),
+        .padding(top = 116.dp),
         color = colorResource(id = R.color.grig_font)
     ) {
         LazyColumn(

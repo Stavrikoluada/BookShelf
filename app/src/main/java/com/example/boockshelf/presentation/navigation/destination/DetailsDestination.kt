@@ -15,7 +15,8 @@ private const val BOOK_KEY = "book"
 
 fun NavGraphBuilder.details(
     saveToFavorites: (BookModel?) -> Unit,
-    deleteFromFavorites: (BookModel?) -> Unit
+    deleteFromFavorites: (BookModel?) -> Unit,
+    back: () -> Unit
 ) {
     composable(
         route = "$BASE_ROUTE/{$BOOK_KEY}",
@@ -30,7 +31,8 @@ fun NavGraphBuilder.details(
         DetailScreen(
             book = book,
             saveToFavorites = saveToFavorites,
-            deleteFromFavorites = deleteFromFavorites
+            deleteFromFavorites = deleteFromFavorites,
+            back = back
         )
     }
 }

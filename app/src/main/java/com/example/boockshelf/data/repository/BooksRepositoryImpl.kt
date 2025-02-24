@@ -23,7 +23,8 @@ class BooksRepositoryImpl(
                 authors = items.volumeInfo?.authors,
                 pageCount = items.volumeInfo?.pageCount,
                 description = items.volumeInfo?.description,
-                id = items.id
+                id = items.id,
+                isSavedInDatabase = false
             )
         }
     }
@@ -37,7 +38,8 @@ class BooksRepositoryImpl(
                 authors = book.authors?.joinToString(separator = ","),
                 pageCount = book.pageCount,
                 description = book.description,
-                id = book.id
+                id = book.id,
+                isSavedInDatabase = true
             )
         )
     }
@@ -51,7 +53,8 @@ class BooksRepositoryImpl(
                 authors = items.authors?.split(",")?.let { ArrayList(it)},
                 pageCount = items.pageCount,
                 description = items.description,
-                id = items.id
+                id = items.id,
+                isSavedInDatabase = items.isSavedInDatabase
             )
         }
     }

@@ -31,5 +31,10 @@ data class BookEntity (
     @ColumnInfo(name = "id")
     val id: String?,
 
+    @ColumnInfo(name = "isSavedInDatabase")
+    val isSavedInDatabase: Boolean,
+
+
+
 )
 
