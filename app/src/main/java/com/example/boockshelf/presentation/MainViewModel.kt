@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boockshelf.domain.entity.BookModel
-import com.example.boockshelf.domain.repository.BooksRepository
+import com.example.boockshelf.domain.interactor.BooksInteractor
 import com.example.boockshelf.presentation.state.BooksUiState
 import com.example.boockshelf.presentation.state.SearchWidgetState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val booksRepository: BooksRepository
+    private val booksInteractor: BooksInteractor
 ) : ViewModel() {
 
 
@@ -47,7 +47,7 @@ class MainViewModel(
         viewModelScope.launch {
             _booksUiState.value = BooksUiState.Loading
             runCatching {
-                booksRepository.getRepositoryBook(query, maxResult)
+                booksInteractor.getBooks(query, maxResult)
             }.onSuccess { books ->
                 _booksUiState.value = BooksUiState.Success(books)
             }
@@ -57,7 +57,7 @@ class MainViewModel(
 
     fun saveToFavorites(book: BookModel) {
         viewModelScope.launch {
-            booksRepository.saveFavoritesBookToDatabase(book)
+            booksInteractor.saveBookToFavorites(book)
         }
     }
 
@@ -65,7 +65,7 @@ class MainViewModel(
         viewModelScope.launch {
             _booksUiState.value = BooksUiState.Loading
             runCatching {
-                booksRepository.getFavoritesBookFromDatabase()
+                booksInteractor.getFavoritesBooks()
             }.onSuccess { books ->
                 _booksUiState.value = BooksUiState.Success(books)
             }
@@ -75,12 +75,12 @@ class MainViewModel(
 
     fun deleteBookForId(book: BookModel) {
         viewModelScope.launch {
-            booksRepository.deleteBookById(book.id)
+            booksInteractor.deleteBookById(book.id)
         }
     }
 
     fun getGenresBook(): List<String> {
-        return booksRepository.getGenresBook()
+        return booksInteractor.getGenres()
     }
 
     private val DEFAULT_BOOK = "book"

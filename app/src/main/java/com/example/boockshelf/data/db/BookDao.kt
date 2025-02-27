@@ -12,11 +12,11 @@ interface BookDao {
     suspend fun getFavoritesBooks(): List<BookEntity>
 
     @Query("SELECT * FROM favorites_book WHERE id = :id")
-    suspend fun getBookForId(id: String): BookEntity
+    suspend fun getBookForId(id: Int): BookEntity
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun insertToFavoritesBooks(movies: BookEntity)
 
     @Query("DELETE FROM favorites_book WHERE id = :id")
-    suspend fun deleteBookById(id: String)
+    suspend fun deleteBookById(id: Int)
 }

@@ -1,17 +1,15 @@
 package com.example.boockshelf.di
 
 import com.example.boockshelf.domain.interactor.BooksInteractor
+import com.example.boockshelf.domain.interactor.impl.BooksInteractorImpl
 import com.example.boockshelf.domain.repository.BooksRepository
-import com.example.boockshelf.presentation.MainViewModel
 import dagger.Module
 import dagger.Provides
 
 @Module
-class AppModule {
-
+class InteractorModule {
     @Provides
-    fun provideMainViewModel(booksInteractor: BooksInteractor): MainViewModel {
-        return MainViewModel(booksInteractor)
+    fun provideBookInteractor(bookRepository: BooksRepository): BooksInteractor {
+        return BooksInteractorImpl(bookRepository)
     }
 }
-

@@ -29,12 +29,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
@@ -57,10 +56,6 @@ fun DrawerNavigation(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-
-//    val searchWidgetState = remember { mutableStateOf(SearchWidgetState.CLOSED) }
-//    val searchTextState = remember { mutableStateOf("") }
-
 
     ModalNavigationDrawer(
         drawerContent = {
@@ -100,6 +95,7 @@ fun DrawerNavigation(
                         selected = false,
                         onClick = {
                             scope.launch {
+                                viewModel.updateSearchWidgetState(SearchWidgetState.OPENED)
                                 drawerState.close()
                             }
                         }
@@ -176,7 +172,11 @@ fun DrawerNavigation(
                             SearchWidgetState.OPENED -> {
                                 SearchBar(
                                     text = viewModel.searchTextState.value,
-                                    onTextChange = { newText -> viewModel.updateSearchTextState(newText) },
+                                    onTextChange = { newText ->
+                                        viewModel.updateSearchTextState(
+                                            newText
+                                        )
+                                    },
                                     onCloseClicked = {
                                         viewModel.updateSearchWidgetState(SearchWidgetState.CLOSED)
                                         viewModel.updateSearchTextState("")

@@ -16,9 +16,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -32,6 +37,16 @@ fun SearchBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
+    LaunchedEffect(focusRequester) {
+        keyboardController?.show()
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,7 +54,10 @@ fun SearchBar(
     ) {
         Box(modifier = Modifier.fillMaxWidth().height(50.dp))
         TextField(
-            modifier = Modifier.fillMaxWidth().background(colorResource(id = R.color.white)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .background(colorResource(id = R.color.white)),
             value = text,
             onValueChange = {
                 onTextChange(it)
@@ -61,11 +79,7 @@ fun SearchBar(
                     modifier = Modifier
                         .alpha(0.8f),
                     onClick = {
-                        if (text.isNotEmpty()) {
-                            onTextChange("")
-                        } else {
-                            onCloseClicked()
-                        }
+                        onCloseClicked()
                     }
                 ) {
                     Icon(
@@ -79,7 +93,10 @@ fun SearchBar(
                 IconButton(
                     modifier = Modifier
                         .alpha(0.8f),
-                    onClick = {onSearchClicked(text)}
+                    onClick = {
+                        keyboardController?.hide()
+                        onSearchClicked(text)
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Search,

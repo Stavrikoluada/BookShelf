@@ -195,11 +195,16 @@ fun DetailScreen(
                         .fillMaxWidth()
                         .padding(start = 14.dp, end = 14.dp)
                 ) {
+                    Text(
+                        text = stringResource(R.string.description_book),
+                        fontSize = 24.sp,
+                        lineHeight = 18.sp
+                    )
                     book?.description?.let {
                         Text(
                             text = it,
                             fontSize = 20.sp,
-                            lineHeight = 18.sp,
+                            lineHeight = 18.sp
                         )
                     }
 

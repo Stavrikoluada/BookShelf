@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "favorites_book")
 data class BookEntity (
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "idT")
-    val idT: Int = 0,
+    @ColumnInfo(name = "id")
+    val id: Int? = 0,
 
     @ColumnInfo(name = "title")
     val title: String?,
@@ -27,9 +27,6 @@ data class BookEntity (
 
     @ColumnInfo(name = "description")
     val description: String?,
-
-    @ColumnInfo(name = "id")
-    val id: String?,
 
     @ColumnInfo(name = "isSavedInDatabase")
     val isSavedInDatabase: Boolean,

@@ -7,6 +7,6 @@ data class BookModel(
     val authors: ArrayList<String>?,
     val pageCount: Int?,
     val description: String?,
-    val id: String?,
+    val id: Int?,
     val isSavedInDatabase: Boolean,
 )

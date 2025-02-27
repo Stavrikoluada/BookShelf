@@ -23,7 +23,9 @@ class BooksRepositoryImpl(
                 authors = items.volumeInfo?.authors,
                 pageCount = items.volumeInfo?.pageCount,
                 description = items.volumeInfo?.description,
-                id = items.id,
+                id = items.id?.toByteArray()?.fold(0) { acc, byte ->
+                    acc + (byte.toInt() and 0xFF)
+                },
                 isSavedInDatabase = false
             )
         }
@@ -56,10 +58,10 @@ class BooksRepositoryImpl(
                 id = items.id,
                 isSavedInDatabase = items.isSavedInDatabase
             )
-        }
+        }.reversed()
     }
 
-    override suspend fun deleteBookById(id: String?) {
+    override suspend fun deleteBookById(id: Int?) {
         if (id != null) {
             db.bookDao().deleteBookById(id)
         }
