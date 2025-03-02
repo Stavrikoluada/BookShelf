@@ -1,9 +1,8 @@
-package com.example.boockshelf
+package com.example.boockshelf.data.remote.network.response
 
 import com.google.gson.annotations.SerializedName
 
-
-data class BookShelf(
+data class DtoBook(
 
   @SerializedName("kind")
   var kind: String?,
@@ -15,7 +14,6 @@ data class BookShelf(
   var items: ArrayList<Items>
 ) {
 
-
   data class Items(
 
     @SerializedName("id")
@@ -24,7 +22,6 @@ data class BookShelf(
     @SerializedName("volumeInfo")
     var volumeInfo: VolumeInfo?
   ) {
-
 
     data class VolumeInfo(
 
@@ -59,7 +56,6 @@ data class BookShelf(
       var previewLink: String?,
     ) {
 
-
       data class ImageLinks(
         @SerializedName("thumbnail")
         var thumbnail: String?
@@ -67,4 +63,3 @@ data class BookShelf(
     }
   }
 }
-

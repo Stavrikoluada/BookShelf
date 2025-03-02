@@ -3,7 +3,7 @@ package com.example.boockshelf.di
 import android.app.Application
 import android.content.Context
 
-class BooksApplication: Application() {
+class BooksApplication : Application() {
     lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
@@ -16,4 +16,3 @@ class BooksApplication: Application() {
             private set
     }
 }
-

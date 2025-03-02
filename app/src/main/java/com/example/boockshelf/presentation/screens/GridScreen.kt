@@ -36,7 +36,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -130,7 +129,7 @@ fun BooksCard(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start,
 
-            ) {
+                ) {
                 book.title?.let {
                     Text(
                         text = it,
@@ -165,7 +164,7 @@ fun BooksCard(
                         )
                     },
                     colors = ButtonDefaults.buttonColors(Color.Red),
-                    shape= RoundedCornerShape(6.dp)
+                    shape = RoundedCornerShape(6.dp)
 
                 ) {
                     Text(
@@ -173,11 +172,9 @@ fun BooksCard(
                         fontSize = 12.sp,
                         color = Color.Black,
                         textAlign = TextAlign.Center
-                        )
+                    )
                 }
             }
         }
     }
 }
-
-

@@ -17,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,9 +28,10 @@ fun GenresScreen(
     genres: List<String>,
     onGenreClicked: (String) -> Unit
 ) {
-    Surface(modifier = Modifier
-        .fillMaxSize()
-        .padding(top = 116.dp),
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 116.dp),
         color = colorResource(id = R.color.grig_font)
     ) {
         LazyColumn(

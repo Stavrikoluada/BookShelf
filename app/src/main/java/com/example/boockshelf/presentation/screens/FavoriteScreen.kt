@@ -27,7 +27,8 @@ fun FavoriteScreen(
     }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(top = 64.dp),
     ) {
         Surface(

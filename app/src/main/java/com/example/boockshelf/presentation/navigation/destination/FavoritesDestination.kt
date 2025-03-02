@@ -7,7 +7,6 @@ import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.presentation.MainViewModel
 import com.example.boockshelf.presentation.screens.FavoriteScreen
 
-
 const val BASE_ROUTE_FAVORITE = "favorite"
 
 fun NavGraphBuilder.favorite(

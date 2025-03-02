@@ -85,4 +85,3 @@ class MainViewModel(
 
     private val DEFAULT_BOOK = "book"
 }
-

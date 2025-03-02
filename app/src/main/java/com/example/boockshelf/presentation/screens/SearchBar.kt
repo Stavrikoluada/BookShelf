@@ -52,7 +52,9 @@ fun SearchBar(
             .fillMaxWidth()
             .height(106.dp)
     ) {
-        Box(modifier = Modifier.fillMaxWidth().height(50.dp))
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp))
         TextField(
             modifier = Modifier
                 .fillMaxWidth()

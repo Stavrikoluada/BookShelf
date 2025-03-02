@@ -7,7 +7,6 @@ import com.example.boockshelf.data.storage.GenresList
 import com.example.boockshelf.domain.entity.BookModel
 import com.example.boockshelf.domain.repository.BooksRepository
 
-
 class BooksRepositoryImpl(
     private val booksApi: BookApi
 ) : BooksRepository {
@@ -52,7 +51,7 @@ class BooksRepositoryImpl(
                 title = items.title,
                 previewLink = items.previewLink,
                 imageLink = items.imageLink,
-                authors = items.authors?.split(",")?.let { ArrayList(it)},
+                authors = items.authors?.split(",")?.let { ArrayList(it) },
                 pageCount = items.pageCount,
                 description = items.description,
                 id = items.id,

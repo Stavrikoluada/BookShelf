@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import com.example.boockshelf.di.BooksApplication
 
 @Database(entities = [BookEntity::class], version = 4)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun bookDao(): BookDao
 
     companion object {

@@ -17,7 +17,8 @@ import com.example.boockshelf.R
 
 @Composable
 fun Error(retryAction: () -> Unit, modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize(),
+    Column(
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -25,7 +26,7 @@ fun Error(retryAction: () -> Unit, modifier: Modifier = Modifier) {
         Button(
             onClick = retryAction,
             colors = ButtonDefaults.buttonColors(Color.Gray),
-            shape= RoundedCornerShape(6.dp)
+            shape = RoundedCornerShape(6.dp)
         ) {
             Text(text = stringResource(id = R.string.retry))
         }
